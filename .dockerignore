@@ -1,0 +1,5 @@
+.dcignore
+Makefile
+readme.md
+azure-agent.iml
+.idea
