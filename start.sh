@@ -50,17 +50,35 @@ export VSO_AGENT_IGNORE=AZP_TOKEN,AZP_TOKEN_FILE
 
 source ./env.sh
 
-print_header "1. Configuring Azure Pipelines agent..."
+if [ -z "$DEPLOYMENT" ]; then
 
-./config.sh --unattended \
-  --agent "${AZP_AGENT_NAME:-$(hostname)}" \
-  --url "$AZP_URL" \
-  --auth PAT \
-  --token $(cat "$AZP_TOKEN_FILE") \
-  --pool "${AZP_POOL:-Default}" \
-  --work "${AZP_WORK:-_work}" \
-  --replace \
-  --acceptTeeEula & wait $!
+  print_header "Configuring Azure Pipelines agent..."
+
+  ./config.sh --unattended \
+    --agent "${AZP_AGENT_NAME:-$(hostname)}" \
+    --url "$AZP_URL" \
+    --auth PAT \
+    --token $(cat "$AZP_TOKEN_FILE") \
+    --pool "${AZP_POOL:-Default}" \
+    --work "${AZP_WORK:-_work}" \
+    --replace \
+    --acceptTeeEula & wait $!
+  else
+
+    print_header "1. Configuring Azure Deployment..."
+
+    ./config.sh --unattended \
+      --deploymentpool \
+      --deploymentpoolname "$DEPLOYMENT" \
+      --agent "${AZP_AGENT_NAME:-$(hostname)}" \
+      --url "$AZP_URL" \
+      --auth PAT \
+      --token $(cat "$AZP_TOKEN_FILE") \
+      --work "${AZP_WORK:-_work}" \
+      --acceptTeeEula & wait $!
+fi
+
+
 
 print_header "2. Running Azure Pipelines agent..."
 
