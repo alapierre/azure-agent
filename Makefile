@@ -1,5 +1,5 @@
 IMAGE_NAME=lapierre/azure-agent
-IMAGE_VERSION=0.0.3
+IMAGE_VERSION=0.0.4
 AGENT_VERSION=2.192.0
 
 build:
