@@ -25,7 +25,7 @@ RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
 copy scripts scripts
 
 ARG TARGETARCH=amd64
-ARG AGENT_VERSION=2.213.2
+ARG AGENT_VERSION=3.214.0
 
 WORKDIR /azp
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
