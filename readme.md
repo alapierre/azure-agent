@@ -10,8 +10,8 @@ docker run -e AZP_URL=<Azure DevOps instance> -e AZP_TOKEN=<PAT token> -e AZP_AG
 
 ## Environment variables
 
-- `AZP_URL` - required, user PAT token from 
-- `AZP_TOKEN` - required, Azure DevOps organization url
+- `AZP_URL` - required, Azure DevOps organization url 
+- `AZP_TOKEN` - required, user PAT token (https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops)
 - `AZP_POOL` - pool name (or Default if not set)
 - `AZP_WORK` - work dir (or /_work if not set)
 - `AZP_AGENT_NAME` - agent name (or hostname if not set)
